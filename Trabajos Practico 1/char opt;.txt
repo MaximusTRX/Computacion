@@ -1,0 +1,17 @@
+char opt;
+opt= getch();
+if(opt==0){
+    opt=getch();
+}
+
+
+gotoxy(,); posiciona el cursor en la pantalla 80x50
+
+_setcursortype();
+    _solidcursor
+    _nocursor
+    _normalcursor
+
+cprintf()
+textcolor()
+textbackgraundcolor();
