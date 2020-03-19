@@ -14,7 +14,7 @@ int main()
     do
     {
         char caracter;
-        int cantcaracter = 0, cantpalabra = 0, cantlinea = 0;
+        int cantcaracter = 1, cantpalabra = 1, cantlinea = 1;
 
         printf("\nIngrese el texto: \n");
         do
