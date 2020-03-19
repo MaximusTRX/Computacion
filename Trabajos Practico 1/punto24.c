@@ -14,12 +14,11 @@ int main()
     do
     {
         char caracter;
-        int cantcaracter = 0, cantpalabra = 1, cantlinea = 1;
+        int cantcaracter = 0, cantpalabra = 0, cantlinea = 0;
 
         printf("\nIngrese el texto: \n");
-        do
+        while ((caracter = getche()) != 27)
         {
-            caracter = getche();
             if ((caracter == ' ') || (caracter == '\t') || (caracter == '\n'))
             {
                 cantpalabra++;
@@ -29,8 +28,7 @@ int main()
                 }
             }else 
             cantcaracter++;
-        } while (caracter != 27);
-        
+        }        
         printf("\nEl texto tiene: ");
         printf("\n\t%i caracteres.", cantcaracter);
         printf("\n\t%i palabras.", cantpalabra);

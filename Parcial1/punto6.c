@@ -9,7 +9,7 @@ int main()
 {
     do
     {
-
+        printf("\nIngrese los numeros: \n");
         char entrada;
 
         while ((entrada = getche()) != 27)
