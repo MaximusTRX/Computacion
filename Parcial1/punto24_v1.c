@@ -21,7 +21,7 @@ int main()
         {
             caracter = getche();
 
-            if ((caracter == 27) || (caracter > 31) || (caracter == 13) || (caracter == 9))
+            if ((caracter == 27) || (caracter > 31) || (caracter < 254) || (caracter == 13) || (caracter == 9))
             {
                 cantcaracter++;
                 switch (caracter)
@@ -45,11 +45,9 @@ int main()
                     if (cantcaracter > 1)
                     {
                         cantpalabra++;
-                    //    printf("debug 1");
                     }
                     break;
                 case '\r':
-                	printf("debug 1");
                     cantcaracter--;
                     if (cantcaracter > 1)
                     {
