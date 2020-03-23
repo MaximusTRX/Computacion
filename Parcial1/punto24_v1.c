@@ -14,37 +14,62 @@ int main()
     do
     {
         char caracter;
-        int cantcaracter = 0, cantpalabra = 0, cantlinea = 0, bandpalabra = 0;
+        int cantcaracter = 0, cantpalabra = 0, cantlinea = 1, bandpalabra = 0;
 
         printf("\nIngrese el texto: \n");
         do
         {
             caracter = getche();
-           if (caracter == '\b')
-           {
-               continue;
-           }else 
-           {
+
+            if ((caracter == 27) || (caracter > 31) || (caracter == 13) || (caracter == 9))
+            {
                 cantcaracter++;
-                
-                if ((caracter == ' ') || (caracter == '\t') || (caracter == '\r'))
+                switch (caracter)
                 {
-                    bandpalabra = 1;
-                    cantpalabra++;
-                    if (caracter == '\r')
+                case ' ':
+                    cantcaracter--;
+                    if (cantcaracter > 1)
                     {
-                        cantlinea++;
-                        cantcaracter--;
-                        printf("\n");
+                        cantpalabra++;
                     }
+                    break;
+                case '\t':
+                    cantcaracter--;
+                    if (cantcaracter > 1)
+                    {
+                        cantpalabra++;
+                    }
+                    break;
+                case 27:
+                    cantcaracter--;
+                    if (cantcaracter > 1)
+                    {
+                        cantpalabra++;
+                    //    printf("debug 1");
+                    }
+                    break;
+                case '\r':
+                	printf("debug 1");
+                    cantcaracter--;
+                    if (cantcaracter > 1)
+                    {
+                        cantpalabra++;
+                    }
+                    cantlinea++;
+                    printf("\n");
+                    break;
                 }
-                if ((bandpalabra == 0) && (cantcaracter > 0))
-                {
-                    cantpalabra = 1;
-                }
-                
-           }
+            }
+            
         }while (caracter != 27);
+        
+        if (cantcaracter < 1)
+        {
+            cantcaracter = 0;
+            cantlinea = 0;
+            cantpalabra = 0;
+        }
+        
         printf("\nEl texto tiene: ");
         printf("\n\t%i caracteres.", cantcaracter);
         printf("\n\t%i palabras.", cantpalabra);
