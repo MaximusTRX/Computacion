@@ -4,7 +4,7 @@ Entonces el programa devuelve 3, {-31, -30} {-30, -29} {75, 76}.*/
 
 #include<stdio.h>
 #include<stdlib.h>
-#include"conio.h"
+#include<conio.h>
 
 int main()
 {
