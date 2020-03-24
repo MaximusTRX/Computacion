@@ -3,7 +3,7 @@ número es negativo debería empezar con la palabra “menos”. El programa deb
 hasta 5 dígitos.*/
 
 #include<stdio.h>
-#include"conio.h"
+#include<conio.h>
 
 int main()
 {
