@@ -3,15 +3,15 @@ número es negativo debería empezar con la palabra “menos”. El programa deb
 hasta 5 dígitos.*/
 
 #include<stdio.h>
-#include"conio.h"
-#include<math.h>
+#include<conio.h>
+#include<stdlib.h>
 int main()
 {
     do
     {
         int entrada, div;
         printf("\nIngrese el numero: \n");
-        scanf("%i%*c", &entrada);
+        scanf("%i", &entrada);
 
         if (abs(entrada) >= 10000)
         {
@@ -29,6 +29,7 @@ int main()
         {
             div = 1;
         }
+        printf("\n\n");
         if (entrada < 0)
         {
             printf(" MENOS");
