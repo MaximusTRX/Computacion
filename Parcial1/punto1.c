@@ -38,6 +38,8 @@ int main()
             cprintf("Presione [C] para el Caballo");
             gotoxy(50, 12);
             cprintf("Presione [T] para la Torre");
+            gotoxy(50, 15);
+            cprintf("Usted selecciono:");
                 
             gotoxy(3,2);
             do //do de movimiento
@@ -109,24 +111,26 @@ int main()
                     switch (entrada)
                     {
                     case 65:
-                    case 97:
-                        //gotoxy(0,0);
+                    case 97://Seleccion Alfil
+                        gotoxy(68, 15);
+                        cprintf("A");
+                        getch();
                         for (i=0;i<8;i++)
                         {
                             for (j=0;j<8;j++)
                             {
                                 if (((i+j)%2)==0)
                                 {
-                                    textcolor(15);
+                                    textcolor(9);
                                     textbackground(0);//blanco
                                 }else
                                 {
-                                    textcolor(0);
+                                    textcolor(9);
                                     textbackground(15);//negro
                                 }
-                                if (abs(x-i) == abs(y-j))
+                                if (abs((i+1)-colu) == abs((j+1)-fila))
                                 {
-                                    if ((x==i) && (y==j))
+                                    if ((colu-1==i) && (fila-1==j))
                                     {
                                         gotoxy(i*5+1,j*3+1);
                                         cprintf("     ");
@@ -156,16 +160,104 @@ int main()
                         }
                         break;
                     case 67:
-                    case 99:
-                        textcolor(9);
-                        gotoxy(x,y);
+                    case 99://Seleccion Caballo
+                        gotoxy(68, 15);
                         cprintf("C");
+                        getch();
+                        for (i=0;i<8;i++)
+                        {
+                            for (j=0;j<8;j++)
+                            {
+                                if (((i+j)%2)==0)
+                                {
+                                    textcolor(9);
+                                    textbackground(0);//blanco
+                                }else
+                                {
+                                    textcolor(9);
+                                    textbackground(15);//negro
+                                }
+                                if (abs(fila-(j+1))==2 && abs(colu-(i+1))==1)
+                                {
+                                    gotoxy(i*5+1,j*3+1);
+                                    cprintf("     ");
+                                    gotoxy(i*5+1,j*3+2);
+                                    cprintf("  X  ");
+                                    gotoxy(i*5+1,j*3+3);
+                                    cprintf("     ");
+                                }else if (abs(fila-(j+1))==1 && abs(colu-(i+1))==2)
+                                {
+                                    gotoxy(i*5+1,j*3+1);
+                                    cprintf("     ");
+                                    gotoxy(i*5+1,j*3+2);
+                                    cprintf("  X  ");
+                                    gotoxy(i*5+1,j*3+3);
+                                    cprintf("     ");
+                                }else if ((colu-1==i) && (fila-1==j))
+                                {
+                                    gotoxy(i*5+1,j*3+1);
+                                    cprintf("     ");
+                                    gotoxy(i*5+1,j*3+2);
+                                    cprintf("  C  ");
+                                    gotoxy(i*5+1,j*3+3);
+                                    cprintf("     ");
+                                }else
+                                {
+                                    gotoxy(i*5+1,j*3+1);
+                                    cprintf("     ");
+                                    gotoxy(i*5+1,j*3+2);
+                                    cprintf("     ");
+                                    gotoxy(i*5+1,j*3+3);
+                                    cprintf("     ");
+                                }
+                            }
+                        }
                         break;
                     case 84:
-                    case 116:
-                        textcolor(9);
-                        gotoxy(x,y);
+                    case 116://Selecion Torre
+                        gotoxy(68, 15);
                         cprintf("T");
+                        getch();
+                        for (i=0;i<8;i++)
+                        {
+                            for (j=0;j<8;j++)
+                            {
+                                if (((i+j)%2)==0)
+                                {
+                                    textcolor(9);
+                                    textbackground(0);//blanco
+                                }else
+                                {
+                                    textcolor(9);
+                                    textbackground(15);//negro
+                                }
+                                if ((colu-1==i) && (fila-1==j))
+                                {
+                                    gotoxy(i*5+1,j*3+1);
+                                    cprintf("     ");
+                                    gotoxy(i*5+1,j*3+2);
+                                    cprintf("  T  ");
+                                    gotoxy(i*5+1,j*3+3);
+                                    cprintf("     ");
+                                }else if (fila==(j+1)||colu==(i+1))
+                                {
+                                    gotoxy(i*5+1,j*3+1);
+                                    cprintf("     ");
+                                    gotoxy(i*5+1,j*3+2);
+                                    cprintf("  X  ");
+                                    gotoxy(i*5+1,j*3+3);
+                                    cprintf("     ");
+                                }else
+                                {
+                                    gotoxy(i*5+1,j*3+1);
+                                    cprintf("     ");
+                                    gotoxy(i*5+1,j*3+2);
+                                    cprintf("     ");
+                                    gotoxy(i*5+1,j*3+3);
+                                    cprintf("     ");
+                                }
+                            }
+                        }
                         break;
                     }
                 }
