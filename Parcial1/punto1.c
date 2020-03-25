@@ -261,15 +261,10 @@ int main()
                         break;
                     }
                 }
-                
                 x=colu*5-2;
                 y=fila*3-1;
                 gotoxy(x,y);
             }while (entrada!=27);
-            
-
-        printf("\n\n-Presione cualquier tecla para volver a ejecutar");
-        printf("\n-Presione ESCAPE para finalizar\n");
     } while (getch()!=27);
     return 0;
 }
