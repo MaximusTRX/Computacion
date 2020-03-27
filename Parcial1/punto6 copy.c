@@ -148,13 +148,296 @@ int main()
                         }
                             break;
                     }
+                }else if (var1 < 40)
+                {
+                    switch (var1)
+                    {
+                    case 30:
+                        printf(" TREINTA");
+                        break;
+                    default:
+                        printf(" TREINTI");
+                        switch (var1/10)
+                        {
+                        case 1:
+                            printf(" UNO");
+                            break;
+                        case 2:
+                            printf(" DOS");
+                            break;
+                        case 3:
+                            printf(" TRES"); 
+                            break;
+                        case 4:
+                            printf(" CUATRO");
+                            break;
+                        case 5:
+                            printf(" CINCO");
+                            break;
+                        case 6:
+                            printf(" SEIS");
+                            break;
+                        case 7:
+                            printf(" SIETE");
+                            break;
+                        case 8:
+                            printf(" OCHO");
+                            break;
+                        case 9:
+                            printf(" NUEVE");
+                            break;
+                        }
+                            break;
+                    }
+                }else if (var1 < 50)
+                {
+                    switch (var1)
+                    {
+                    case 40:
+                        printf(" CUARENTA");
+                        break;
+                    default:
+                        printf(" CUARENTI");
+                        switch (var1/10)
+                        {
+                        case 1:
+                            printf(" UNO");
+                            break;
+                        case 2:
+                            printf(" DOS");
+                            break;
+                        case 3:
+                            printf(" TRES"); 
+                            break;
+                        case 4:
+                            printf(" CUATRO");
+                            break;
+                        case 5:
+                            printf(" CINCO");
+                            break;
+                        case 6:
+                            printf(" SEIS");
+                            break;
+                        case 7:
+                            printf(" SIETE");
+                            break;
+                        case 8:
+                            printf(" OCHO");
+                            break;
+                        case 9:
+                            printf(" NUEVE");
+                            break;
+                        }
+                            break;
+                    }
+                }else if (var1 < 60)
+                {
+                    switch (var1)
+                    {
+                    case 50:
+                        printf(" CINCUENTA");
+                        break;
+                    default:
+                        printf(" CINCUENTI");
+                        switch (var1/10)
+                        {
+                        case 1:
+                            printf(" UNO");
+                            break;
+                        case 2:
+                            printf(" DOS");
+                            break;
+                        case 3:
+                            printf(" TRES"); 
+                            break;
+                        case 4:
+                            printf(" CUATRO");
+                            break;
+                        case 5:
+                            printf(" CINCO");
+                            break;
+                        case 6:
+                            printf(" SEIS");
+                            break;
+                        case 7:
+                            printf(" SIETE");
+                            break;
+                        case 8:
+                            printf(" OCHO");
+                            break;
+                        case 9:
+                            printf(" NUEVE");
+                            break;
+                        }
+                            break;
+                    }
+                }else if (var1 < 70)
+                {
+                    switch (var1)
+                    {
+                    case 60:
+                        printf(" SESENTA");
+                        break;
+                    default:
+                        printf(" SESENTI");
+                        switch (var1/10)
+                        {
+                        case 1:
+                            printf(" UNO");
+                            break;
+                        case 2:
+                            printf(" DOS");
+                            break;
+                        case 3:
+                            printf(" TRES"); 
+                            break;
+                        case 4:
+                            printf(" CUATRO");
+                            break;
+                        case 5:
+                            printf(" CINCO");
+                            break;
+                        case 6:
+                            printf(" SEIS");
+                            break;
+                        case 7:
+                            printf(" SIETE");
+                            break;
+                        case 8:
+                            printf(" OCHO");
+                            break;
+                        case 9:
+                            printf(" NUEVE");
+                            break;
+                        }
+                            break;
+                    }
+                }else if (var1 < 80)
+                {
+                    switch (var1)
+                    {
+                    case 70:
+                        printf(" SETENTA");
+                        break;
+                    default:
+                        printf(" SETENTI");
+                        switch (var1/10)
+                        {
+                        case 1:
+                            printf(" UNO");
+                            break;
+                        case 2:
+                            printf(" DOS");
+                            break;
+                        case 3:
+                            printf(" TRES"); 
+                            break;
+                        case 4:
+                            printf(" CUATRO");
+                            break;
+                        case 5:
+                            printf(" CINCO");
+                            break;
+                        case 6:
+                            printf(" SEIS");
+                            break;
+                        case 7:
+                            printf(" SIETE");
+                            break;
+                        case 8:
+                            printf(" OCHO");
+                            break;
+                        case 9:
+                            printf(" NUEVE");
+                            break;
+                        }
+                            break;
+                    }
+                }else if (var1 < 90)
+                {
+                    switch (var1)
+                    {
+                    case 80:
+                        printf(" OCHENTA");
+                        break;
+                    default:
+                        printf(" OCHENTI");
+                        switch (var1/10)
+                        {
+                        case 1:
+                            printf(" UNO");
+                            break;
+                        case 2:
+                            printf(" DOS");
+                            break;
+                        case 3:
+                            printf(" TRES"); 
+                            break;
+                        case 4:
+                            printf(" CUATRO");
+                            break;
+                        case 5:
+                            printf(" CINCO");
+                            break;
+                        case 6:
+                            printf(" SEIS");
+                            break;
+                        case 7:
+                            printf(" SIETE");
+                            break;
+                        case 8:
+                            printf(" OCHO");
+                            break;
+                        case 9:
+                            printf(" NUEVE");
+                            break;
+                        }
+                            break;
+                    }
+                }else if (var1 < 100)
+                {
+                    switch (var1)
+                    {
+                    case 90:
+                        printf(" NOVENTA");
+                        break;
+                    default:
+                        printf(" NOVENTI");
+                        switch (var1/10)
+                        {
+                        case 1:
+                            printf(" UNO");
+                            break;
+                        case 2:
+                            printf(" DOS");
+                            break;
+                        case 3:
+                            printf(" TRES"); 
+                            break;
+                        case 4:
+                            printf(" CUATRO");
+                            break;
+                        case 5:
+                            printf(" CINCO");
+                            break;
+                        case 6:
+                            printf(" SEIS");
+                            break;
+                        case 7:
+                            printf(" SIETE");
+                            break;
+                        case 8:
+                            printf(" OCHO");
+                            break;
+                        case 9:
+                            printf(" NUEVE");
+                            break;
+                        }
+                            break;
+                    }
                 }
                 printf(" MIL");
             }
-            
-            
-
-            
             entrada %= div;
             div /= 10;
         }while (div != 0);
