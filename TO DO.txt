@@ -1,0 +1,4 @@
+Imprimir matrices con gotoxy()
+Se hace al salir del for para las filas
+formato: gotoxy(1, i);
+siendo i el contador
