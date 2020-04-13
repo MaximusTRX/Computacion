@@ -115,13 +115,14 @@ int main()
             gotoxy(1,1);
             cprintf("MATRIZ ORIGINAL");
             gotoxy(1, 3);
+            textcolor(15);
             for (i = 0; i < 10; i++)
             {
                 for (j = 0; j < 10; j++)
                 {
-                    printf("%3i  ",matriz[i][j]);
+                    cprintf("%3i  ",matriz[i][j]);
                 }
-                printf("\n");
+                gotoxy(1, 3+i);
             }
             
             if (delator != 0)//ordenar o no la matriz
@@ -148,13 +149,14 @@ int main()
                 gotoxy(1,16);
                 cprintf("MATRIZ ORDENADA DE MENOR A MAYOR");
                 gotoxy(1,18);
+                textcolor(15);
                 for (i = 0; i < 10; i++)
                 {
                     for (j = 0; j < 10; j++)
                     {
-                        printf("%3i  ",matriz[i][j]);
+                        cprintf("%3i  ",matriz[i][j]);
                     }
-                    printf("\n");
+                    gotoxy(1, 18+i);
                 }
             }
 
