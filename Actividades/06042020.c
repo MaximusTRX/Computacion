@@ -4,7 +4,7 @@
 
 int main()
 {
-
+       random
     typedef struct 
     {
         unsigned char id;
