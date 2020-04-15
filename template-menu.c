@@ -21,10 +21,8 @@ int main()
         gotoxy(1, w+5);
         cprintf("| Presione [F3] | Se encuentran los valores que se repiten, indicando el valor, cuantas veces, |");
         gotoxy(1, w+6);
-        cprintf(" ----------------------------------------------------------------------------------------------|");
-        gotoxy(1, w+7);
         cprintf("|               | y en que posiciones se encuentran dichos valores repetidos                   |");
-        gotoxy(1, w+8);
+        gotoxy(1, w+7);
         cprintf(" ----------------------------------------------------------------------------------------------");
         
         fflush(stdin);
