@@ -5,31 +5,27 @@
 int main()
 {
     randomize();
+    unsigned char w = 10;
     char entrada, i, j, k, x, y, cont, cant, repetidos;
     char matriz[10][10][3];
     do
     {
         do{
             textcolor(9);
-            gotoxy(1, 27);
-            cprintf(" ----------------------------------------------------------------------------------------------");
-            gotoxy(1, 28);
-            cprintf("| Presione [F1] | Se cargar la matriz con calores aleatorios entre A y F                       |");
-            gotoxy(1, 29);
-            cprintf(" ----------------------------------------------------------------------------------------------|");
-            gotoxy(1, 30);
-            cprintf("| Presione [F2] | Se resalta la combinacion de caracteres FDA                                  |");
-            gotoxy(1, 31);
-            cprintf(" ----------------------------------------------------------------------------------------------|");
-            gotoxy(1, 32);
-            cprintf("| Presione [F3] | Se encuentran los valores que se repiten, indicando el valor, cuantas veces, |");
-            gotoxy(1, 33);
-            cprintf(" ----------------------------------------------------------------------------------------------|");
-            gotoxy(1, 34);
-            cprintf("|               | y en que posiciones se encuentran dichos valores repetidos                   |");
-            gotoxy(1, 35);
-            cprintf(" ----------------------------------------------------------------------------------------------");
-    
+            gotoxy(60, w);
+            cprintf(" -----------------------------------------------------------");
+            gotoxy(60, w+1);
+            cprintf("| Opt [F1] | Se cargar la matriz con valores aleatorios     |");
+            gotoxy(60, w+2);
+            cprintf(" -----------------------------------------------------------");
+            gotoxy(60, w+3);
+            cprintf("| Opt [F2] | Se resalta la combinacion de caracteres FDA    |");
+            gotoxy(60, w+4);
+            cprintf(" -----------------------------------------------------------");
+            gotoxy(60, w+5);
+            cprintf("| Opt [F3] | Se encuentran los valores que se repiten       |");
+            gotoxy(60, w+6);
+            cprintf(" -----------------------------------------------------------");
             fflush(stdin);
             entrada = getch();
 
@@ -42,16 +38,30 @@ int main()
                     case 59://F1
 
                         for (i = 0; i < 10; i++)
+                        {
+                            for (j = 0; j < 10; j++)
                             {
-                                for (j = 0; j < 10; j++)
-                                {
-                                    matriz[i][j][0] = random(6) + 65;
-                                    matriz[i][j][1] = random(6) + 65;
-                                    matriz[i][j][2] = random(6) + 65;
-                                }
+                                matriz[i][j][0] = random(6) + 65;
+                                matriz[i][j][1] = random(6) + 65;
+                                matriz[i][j][2] = random(6) + 65;
                             }
+                        }
+                        textcolor(9);
+                        gotoxy(1,1);
+                        cprintf("MATRIZ ORIGINAL");
+                        gotoxy(1, 4);
+                        textcolor(15);
+                        for (i = 0; i < 10; i++)
+                        {
+                            for (j = 0; j < 10; j++)
+                            {
+                                cprintf("%c", matriz[i][j][0]);
+                                cprintf("%c", matriz[i][j][1]);
+                                cprintf("%c  ", matriz[i][j][2]);
+                            }
+                            gotoxy(1, 4+i);
+                        }
                         break;
-                    
                     case 60://F2
                         textcolor(9);
                         gotoxy(1,14);
@@ -212,21 +222,7 @@ int main()
                         break;
                     }
                 }
-                textcolor(9);
-                gotoxy(1,1);
-                cprintf("MATRIZ ORIGINAL");
-                gotoxy(1, 3);
-                textcolor(15);
-                for (i = 0; i < 10; i++)
-                {
-                    for (j = 0; j < 10; j++)
-                    {
-                        cprintf("%c", matriz[i][j][0]);
-                        cprintf("%c", matriz[i][j][1]);
-                        cprintf("%c  ", matriz[i][j][2]);
-                    }
-                    gotoxy(1, 3+i);
-                }
+                
         }while (entrada != 27);
         
         printf("\n\n-Presione cualquier tecla para volver a ejecutar");
