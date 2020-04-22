@@ -7,9 +7,9 @@ int main()
     randomize();
     do
     {
-        unsigned char i, j, x, y, delator, cont;
+        unsigned char i, j, x, y, delator;
         char entrada, flag = 0;
-        int matriz[10][10] = {0}, aleat, aux, selec, fselec, cselec;;
+        int matriz[10][10] = {0}, aleat, aux, selec, fselec, cselec;
         do
         {
             textcolor(9);
@@ -50,11 +50,10 @@ int main()
                         {
                             do
                             {
-                                cont = 0;
+                                flag = 0;
                                 aleat = random(500);
-                                if ((aleat > 100) || (aleat < 500))
+                                if ((aleat > 100) && (aleat < 500))
                                 {
-                                    cont++;
                                     for (x = 0; x < i; x++)
                                     {
                                         for (y = 0; y < j; y++)
@@ -65,13 +64,13 @@ int main()
                                             }
                                         }
                                     }
+                                }else
+                                {
+                                    flag++;
                                 }
+                                
                             } while (flag != 0);
-                            if (cont != 0)
-                            {
-                                matriz[i][j] = aleat;
-                                flag = 0;
-                            }
+                            matriz[i][j] = aleat;
                         }
                     }
                     break;
