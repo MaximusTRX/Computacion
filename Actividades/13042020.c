@@ -26,7 +26,6 @@ int main()
             cprintf("| Opt [F3] | Se encuentran los valores que se repiten       |");
             gotoxy(60, w+6);
             cprintf(" -----------------------------------------------------------");
-            gotoxy(1, 1);
             fflush(stdin);
             entrada = getch();
 
@@ -51,7 +50,6 @@ int main()
                         textcolor(9);
                         gotoxy(1,1);
                         cprintf("MATRIZ ORIGINAL");
-                        gotoxy(1, 3);
                         textcolor(15);
                         for (i = 0; i < 10; i++)
                         {
@@ -68,17 +66,17 @@ int main()
                         textcolor(9);
                         gotoxy(1,14);
                         cprintf("MATRIZ MOSTRANDO COMBINACION DE CARACTERES");
-                        gotoxy(1,16);
                         textcolor(15);
                         for (i = 0; i < 10; i++)
                         {
+                            gotoxy(1, 16+i);
                             for (j = 0; j < 10; j++)
                             {
                                 for ( k = 0; k < 3; k++)
                                 {
                                     switch (matriz[i][j][k])
                                     {
-                                    case 70:
+                                    case 70://Letra F
                                         if ((k == 0) && (matriz[i][j][1] == 68) && (matriz[i][j][2] == 65))
                                         {
                                             textcolor(9);
@@ -104,11 +102,18 @@ int main()
                                             textcolor(15);
                                             cprintf("%c", matriz[i][j][k]);
                                         }
-                                        
                                         break;
                                     
-                                    case 68:
-                                        if ((k == 1) && (matriz[i][j][0] == 70) && (matriz[i][j][2] == 65))
+                                    case 68://Letra D
+                                        if ((i == 0) && (j == 0) && (k == 0) && (matriz[0][0][1] == 65) && (matriz[9][9][2] == 70))
+                                        {
+                                            textcolor(9);
+                                            cprintf("%c", matriz[i][j][k]);
+                                        }else if ((i == 9) && (j == 9) && (k == 2) && (matriz[0][0][0] == 65) && (matriz[9][9][1] == 70))
+                                        {
+                                            textcolor(9);
+                                            cprintf("%c", matriz[i][j][k]);
+                                        } else if ((k == 1) && (matriz[i][j][0] == 70) && (matriz[i][j][2] == 65))
                                         {
                                             textcolor(9);
                                             cprintf("%c", matriz[i][j][k]);
@@ -127,8 +132,16 @@ int main()
                                         }
                                         break;
 
-                                    case 65:
-                                        if ((k == 2) && (matriz[i][j][0] == 70) && (matriz[i][j][1] == 68))
+                                    case 65://Letra A
+                                        if ((i == 0) && (j == 0) && (k == 0) && (matriz[9][9][2] == 68) && (matriz[9][9][1] == 70))
+                                        {
+                                            textcolor(9);
+                                            cprintf("%c", matriz[i][j][k]);
+                                        }else if ((i == 0) && (j == 0) && (k == 1) && (matriz[0][0][0] == 68) && (matriz[9][9][2] == 70))
+                                        {
+                                            textcolor(9);
+                                            cprintf("%c", matriz[i][j][k]);
+                                        }else if ((k == 2) && (matriz[i][j][0] == 70) && (matriz[i][j][1] == 68))
                                         {
                                             textcolor(9);
                                             cprintf("%c", matriz[i][j][k]);
@@ -155,7 +168,6 @@ int main()
                                 }
                                 cprintf("  ");
                             }
-                            gotoxy(1, 18+i);
                         }
                         break;
                     
