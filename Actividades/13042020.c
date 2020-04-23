@@ -26,10 +26,11 @@ int main()
             cprintf("| Opt [F3] | Se encuentran los valores que se repiten       |");
             gotoxy(60, w+6);
             cprintf(" -----------------------------------------------------------");
+            gotoxy(1, 1);
             fflush(stdin);
             entrada = getch();
 
-                if (entrada == 0)
+                if ((entrada == 0) || (entrada == 224))
                 {
                     
                     entrada = getch();
@@ -46,20 +47,21 @@ int main()
                                 matriz[i][j][2] = random(6) + 65;
                             }
                         }
+
                         textcolor(9);
                         gotoxy(1,1);
                         cprintf("MATRIZ ORIGINAL");
-                        gotoxy(1, 4);
+                        gotoxy(1, 3);
                         textcolor(15);
                         for (i = 0; i < 10; i++)
                         {
+                            gotoxy(1, 3+i);
                             for (j = 0; j < 10; j++)
                             {
                                 cprintf("%c", matriz[i][j][0]);
                                 cprintf("%c", matriz[i][j][1]);
                                 cprintf("%c  ", matriz[i][j][2]);
                             }
-                            gotoxy(1, 4+i);
                         }
                         break;
                     case 60://F2
@@ -171,7 +173,6 @@ int main()
                                     for (y = 0; y < 10; y++)
                                     {
                                         cont = 0;
-
                                         if (matriz[i][j][0] < 71)
                                         {
                                             for (k = 0; k < 3; k++)
