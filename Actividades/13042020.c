@@ -6,7 +6,7 @@ int main()
 {
     randomize();
     unsigned char w = 10;
-    char entrada, i, j, k, x, y, cont, cant, repetidos;
+    char entrada, i, j, k, x, y, flag, cant, repetidos;
     char matriz[10][10][3];
     do
     {
@@ -172,70 +172,44 @@ int main()
                         break;
                     
                     case 61://F3
-                        gotoxy(1, 37);
+                        gotoxy(1, 26);
                         for (i = 0; i < 10; i++)
                         {
-                            for (j = 0; j < 10; j++)
+                            for ( j = 0; j < 10; j++)
                             {
-                                repetidos = 0;
-                                printf("La combinacion %c%c%c [%02d][%02d] se repite en la posicion:", matriz[i][j][0], matriz[i][j][1], matriz[i][j][2], i+1, j+1);
-                                
+                                flag = 0;
                                 for (x = 0; x < 10; x++)
                                 {
                                     for (y = 0; y < 10; y++)
                                     {
-                                        cont = 0;
-                                        if (matriz[i][j][0] < 71)
+                                        if ((matriz[i][j][0] == matriz[x][y][0]) && (i != x) && (j != y))
                                         {
-                                            for (k = 0; k < 3; k++)
+                                            if (matriz[i][j][1] == matriz[x][y][1])
                                             {
-                                                if (matriz[i][j][k] == matriz[x][y][k])
+                                                if (matriz[i][j][2] == matriz[x][y][2])
                                                 {
-                                                    cont++;
-                                                }
-                                            }
-                                            if(cont == 3)
-                                            {
-                                                if ( (i != x) && (y != j) )
-                                                {
-                                                    printf("[%02d][%02d] ", x+1, y+1);
-                                                    repetidos++;
-                                                }
-                                                for (k = 0; k < 3; k++)
-                                                {
-                                                    matriz[x][y][k] += 32;
+                                                    if (flag == 0)
+                                                    {
+                                                        printf("\n------------------------------------------------------------");
+                                                        printf("\nLa combinacion %c%c%c se repite en las posiciones \n\n", matriz[i][j][0], matriz[i][j][1], matriz[i][j][2]);
+                                                        printf("|[%02d] [%02d]|", i+1, j+1);
+                                                    }
+                                                    flag++;
+                                                    printf("|[%02d] [%02d]|", x+1, y+1);
                                                 }
                                             }
                                         }
                                     }
                                 }
-                                if (repetidos =! 0)
+                                if (flag != 0)
                                 {
-                                    printf("en total se repitio %2d veces\n", repetidos+1);
-                                }
-                                else
-                                {
-                                    printf("\r");
+                                    printf("\n\nY se repitio: %d veces", flag+1);
+                                    printf("\n------------------------------------------------------------");
                                 }
                             }
                         }
-                        for (i = 0; i < 10; i++)
-                        {
-                            for (j = 0; j < 10; j++)
-                            {
-                                for (k = 0; k < 3; k++)
-                                {
-                                    if (matriz[i][j][k] > 71)
-                                    {
-                                        matriz[i][j][k] -= 32;
-                                    }
-                                }
-                            }
-                        }
-                        break;
                     }
                 }
-                
         }while (entrada != 27);
         
         printf("\n\n-Presione cualquier tecla para volver a ejecutar");
