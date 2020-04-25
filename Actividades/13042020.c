@@ -184,9 +184,9 @@ int main()
                                     {
                                         if ((matriz[i][j][0] == matriz[x][y][0]) && (i != x) && (j != y) && (matriz[x][y][0] < 71))
                                         {
-                                            if (matriz[i][j][1] == matriz[x][y][1])
+                                            if ((matriz[i][j][1] == matriz[x][y][1]) && (matriz[x][y][1] < 71))
                                             {
-                                                if (matriz[i][j][2] == matriz[x][y][2])
+                                                if ((matriz[i][j][2] == matriz[x][y][2]) && (matriz[x][y][2] < 71))
                                                 {
                                                     if (flag == 0)
                                                     {
@@ -207,7 +207,7 @@ int main()
                                 }
                                 if (flag != 0)
                                 {
-                                    printf("\n\nY se repitio: %d veces", flag+1);
+                                    printf("\n\nY se repitio: %d veces", flag);
                                     printf("\n------------------------------------------------------------");
                                 }
                             }

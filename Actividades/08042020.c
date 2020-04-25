@@ -7,21 +7,26 @@ int main()
     randomize();
     do
     {
-        unsigned char i, j, x, y, delator;
+        unsigned char i, j, x, y, delator, w = 10;
         char entrada, flag = 0;
         int matriz[10][10] = {0}, aleat, aux, selec, fselec, cselec;
         do
         {
             textcolor(9);
-            gotoxy(1, 29);
-            cprintf("Presione [F1] se cargar la matriz con numeros aleatorios entre 0 y 999");
-            gotoxy(1, 30);
-            cprintf("Presione [F2] se cargar la matriz con numeros aleatorios que no se repitan entre 100 y 500");
-            gotoxy(1, 31);
-            cprintf("Presione [F3] la matriz con valores que se incrementen de a uno a partir del valor");
-            gotoxy(15, 32);
-            cprintf("ingresado por cada celda que rodea la posicion ingresada");
-            
+            gotoxy(60, w);
+            cprintf(" -----------------------------------------------------------");
+            gotoxy(60, w+1);
+            cprintf("| Opt [F1] | Se cargar la matriz con valores aleatorios     |");
+            gotoxy(60, w+2);
+            cprintf(" -----------------------------------------------------------");
+            gotoxy(60, w+3);
+            cprintf("| Opt [F2] | Numeros aleatorios sin repetir entre 100 y 500 |");
+            gotoxy(60, w+4);
+            cprintf(" -----------------------------------------------------------");
+            gotoxy(60, w+5);
+            cprintf("| Opt [F3] | Carga la matriz con valores que se incrementan|");
+            gotoxy(60, w+6);
+            cprintf(" -----------------------------------------------------------");
             fflush(stdin);
             entrada = getch();
 
@@ -76,23 +81,24 @@ int main()
                     break;
                 
                 case 61://F3
+                    clrscr();
                     delator = 0;
                     do
                     {
-                        gotoxy(1, 35);
+                        gotoxy(1, 14);
                         printf("Ingrese la fila: ");
                         scanf("%i", &fselec);
                     } while ((fselec < 1) || (fselec > 10));
                     fselec--;
                     do
                     {
-                        gotoxy(1, 37);
+                        gotoxy(1, 16);
                         printf("Ingrese la columna: ");
                         scanf("%i", &cselec);
                     } while ((cselec < 1) || (cselec > 10));
                     cselec--;
 
-                    gotoxy(1, 39);
+                    gotoxy(1, 18);
                     printf("Ingrese el valor: ");
                     scanf("%i", &selec);
 
@@ -150,9 +156,9 @@ int main()
                     }
                 }
                 textcolor(9);
-                gotoxy(1,16);
+                gotoxy(1,14);
                 cprintf("MATRIZ ORDENADA DE MENOR A MAYOR");
-                gotoxy(1,18);
+                gotoxy(1,16);
                 textcolor(15);
                 for (i = 0; i < 10; i++)
                 {
@@ -160,10 +166,9 @@ int main()
                     {
                         cprintf("%3i  ",matriz[i][j]);
                     }
-                    gotoxy(1, 18+i);
+                    gotoxy(1, 16+i);
                 }
             }
-
         } while (entrada != 27);
         printf("\n\n-Presione cualquier tecla para volver a ejecutar");
         printf("\n-Presione ESCAPE para finalizar\n");
