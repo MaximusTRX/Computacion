@@ -1,13 +1,14 @@
 #include <stdio.h>
+#include <conio.h>
+
 int main(void)
 {
-    int *p, **pp, i = 10, j = 20;
-    p = &i;
-    pp = &p;
-    **pp += 100;
-    p = &j;
-    **pp += 100;
-    
-    printf("%d\n", i+j);
+    char caracter;
+    fflush(stdin);
+    caracter = getch();
+
+    printf("%d", caracter);
+
+    getch();
     return 0;
 }

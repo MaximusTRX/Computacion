@@ -13,12 +13,14 @@ int main()
 {
     do
     {
+        unsigned char flag;
         char caracter;
         int cantcaracter = 0, cantpalabra = 0, cantlinea = 1, bandpalabra = 0;
 
         printf("\nIngrese el texto: \n");
         do
         {
+            fflush(stdin);
             caracter = getche();
 
             if ((caracter == 27) || (caracter > 31) || (caracter < 254) || (caracter == 13) || (caracter == 9))
@@ -42,23 +44,31 @@ int main()
                     break;
                 case 27:
                     cantcaracter--;
-                    if (cantcaracter > 1)
+                    if (flag != 0)
                     {
                         cantpalabra++;
                     }
                     break;
                 case '\r':
                     cantcaracter--;
-                    if (cantcaracter > 1)
+                    if (flag != 0)
                     {
                         cantpalabra++;
                     }
                     cantlinea++;
+                    flag = 0;
                     printf("\n");
+                    break;
+                case 8:
+                    cantcaracter--;
+                    break;
+                default:
+                    
+                    flag++;
+
                     break;
                 }
             }
-            
         }while (caracter != 27);
         
         if (cantcaracter < 1)
