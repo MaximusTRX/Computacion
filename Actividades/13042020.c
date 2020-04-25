@@ -182,7 +182,7 @@ int main()
                                 {
                                     for (y = 0; y < 10; y++)
                                     {
-                                        if ((matriz[i][j][0] == matriz[x][y][0]) && (i != x) && (j != y))
+                                        if ((matriz[i][j][0] == matriz[x][y][0]) && (i != x) && (j != y) && (matriz[x][y][0] < 71))
                                         {
                                             if (matriz[i][j][1] == matriz[x][y][1])
                                             {
@@ -196,6 +196,10 @@ int main()
                                                     }
                                                     flag++;
                                                     printf("|[%02d] [%02d]|", x+1, y+1);
+
+                                                    matriz[x][y][0] += 32;
+                                                    matriz[x][y][1] += 32;
+                                                    matriz[x][y][2] += 32;
                                                 }
                                             }
                                         }
@@ -208,6 +212,19 @@ int main()
                                 }
                             }
                         }
+                        for (i = 0; i < 10; i++)
+                        {
+                            for (j = 0; j < 10; j++)
+                            {
+                                if (matriz[i][j][0] > 71)
+                                {
+                                    matriz[i][j][0] -= 32;
+                                    matriz[i][j][1] -= 32;
+                                    matriz[i][j][2] -= 32;
+                                }
+                            }
+                        }
+                        break;
                     }
                 }
         }while (entrada != 27);
