@@ -60,8 +60,11 @@ int main()
                     printf("\n");
                     break;
                 case 8:
+                    if (cantcaracter >0)
+                    {
                     cantcaracter--;
                     cantcaracter--;
+                    }
                     break;
                 default:
                     
