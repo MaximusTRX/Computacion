@@ -15,7 +15,7 @@ int main()
             printf("\nIngrese el numero: \n");
             scanf("%i", &entrada);
             printf("\n\n");
-        }while (entrada > 99999);
+        }while (abs(entrada) > 99999);
 
         if (entrada < 0)
         {
@@ -42,7 +42,7 @@ int main()
         {
             var1 = (abs(entrada)/div);
             if (var1 >= 1000)
-            {
+            
                 if (var1 < 10)
                 {
                     switch (var1)
