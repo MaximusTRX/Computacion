@@ -23,7 +23,7 @@ int main()
             fflush(stdin);
             caracter = getche();
 
-            if ((caracter == 27) || (caracter > 31) || (caracter < 254) || (caracter == 13) || (caracter == 9))
+            if ((caracter == 27) || (caracter > 31) || (caracter < 254) || (caracter == 13) || (caracter == 9) || (caracter == 8))
             {
                 cantcaracter++;
                 switch (caracter)
@@ -60,6 +60,7 @@ int main()
                     printf("\n");
                     break;
                 case 8:
+                    cantcaracter--;
                     cantcaracter--;
                     break;
                 default:
