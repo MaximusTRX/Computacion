@@ -9,7 +9,7 @@ int main()
 {
     do
     {
-        int entrada, div, aux, flag;
+        int entrada, div=0, aux, flag;
         printf("\nIngrese el numero: \n");
         scanf("%i", &entrada);
 
@@ -23,21 +23,14 @@ int main()
         }else if (abs(entrada) >= 100)
         {
             div = 100;
-
-        }/*else if (abs(entrada) >= 10)
-        {
-            div = 10;
-        }else
-        {
-            div = 1;
         }
-        printf("\n\n");*/
+        printf("\n");
         if (entrada < 0)
         {
-            printf(" MENOS");
+            printf("MENOS ");
         }
 
-        if (div == 1000)
+        if (div == 1000)//Impresion de miles y cientos
         {
             aux = (abs(entrada)/div);
             switch (aux)
@@ -204,131 +197,7 @@ int main()
                 printf("NOVECIENTOS ");
                 break;
             }
-            
-            div /= 10;
-            aux = (abs(entrada)%div);
-
-            switch (aux)
-            {
-            case 10:
-                printf("DIEZ ");
-                break;
-            case 11:
-                printf("ONCE ");
-                break;
-            case 12:
-                printf("DOCE ");
-                break;
-            case 13:
-                printf("TRECE ");
-                break;
-            case 14:
-                printf("CATORCE ");
-                break;
-            case 15:
-                printf("QUINCE ");
-                break;
-            case 16:
-                printf("DIECISEIS ");
-                break;
-            case 17:
-                printf("DIECISIETE ");
-                break;
-            case 18:
-                printf("DIECIOCHO ");
-                break;
-            case 19:
-                printf("DIECINUEVE ");
-                break;
-            case 20:
-                printf("VEINTE ");
-                break;
-            case 30:
-                printf("TREINTA ");
-                break;
-            case 40:
-                printf("CUARENTA ");
-                break;
-            case 50:
-                printf("CINCUENTA ");
-                break;
-            case 60:
-                printf("SESENTA ");
-                break;
-            case 70:
-                printf("SETENTA ");
-                break;
-            case 80:
-                printf("OCHENTA ");
-                break;
-            case 90:
-                printf("NOVENTA ");
-                break;
-            default:
-                switch (aux/10)
-                {
-                case 2:
-                    printf("VEINTI ");
-                    break;
-                case 3:
-                    printf("TREINTA Y ");
-                    break;
-                case 4:
-                    printf("CUARENTA Y ");
-                    break;
-                case 5:
-                    printf("CINCUENTA Y ");
-                    break;
-                case 6:
-                    printf("SESENTA Y ");
-                    break;
-                case 7:
-                    printf("SETENTA Y ");
-                    break;
-                case 8:
-                    printf("OCHENTA Y ");
-                    break;
-                case 9:
-                    printf("NOVENTA Y ");
-                    break;
-                }
-                switch (aux%10)
-                {
-                    case 1:
-                        if (flag == 0)
-                        {
-                            printf("UNO ");
-                        }
-                        break;
-                    case 2:
-                        printf("DOS ");
-                        break;
-                    case 3:
-                        printf("TRES "); 
-                        break;
-                    case 4:
-                        printf("CUATRO ");
-                        break;
-                    case 5:
-                        printf("CINCO ");
-                        break;
-                    case 6:
-                        printf("SEIS ");
-                        break;
-                    case 7:
-                        printf("SIETE ");
-                        break;
-                    case 8:
-                        printf("OCHO ");
-                        break;
-                    case 9:
-                        printf("NUEVE ");
-                        break;
-                    }
-                break;//Switch grande
-            }
-
-        }else if (div == 100)
+        }else if (div == 100)//Impresion de cientos
         {
             aux = entrada;
             if (aux > 100)
@@ -372,66 +241,66 @@ int main()
                 printf("NOVECIENTOS ");
                 break;
             }
-            
-            aux = (abs(entrada)%div);
-
-            switch (aux)
-            {
-            case 10:
-                printf("DIEZ ");
-                break;
-            case 11:
-                printf("ONCE ");
-                break;
-            case 12:
-                printf("DOCE ");
-                break;
-            case 13:
-                printf("TRECE ");
-                break;
-            case 14:
-                printf("CATORCE ");
-                break;
-            case 15:
-                printf("QUINCE ");
-                break;
-            case 16:
-                printf("DIECISEIS ");
-                break;
-            case 17:
-                printf("DIECISIETE ");
-                break;
-            case 18:
-                printf("DIECIOCHO ");
-                break;
-            case 19:
-                printf("DIECINUEVE ");
-                break;
-            case 20:
-                printf("VEINTE ");
-                break;
-            case 30:
-                printf("TREINTA ");
-                break;
-            case 40:
-                printf("CUARENTA ");
-                break;
-            case 50:
-                printf("CINCUENTA ");
-                break;
-            case 60:
-                printf("SESENTA ");
-                break;
-            case 70:
-                printf("SETENTA ");
-                break;
-            case 80:
-                printf("OCHENTA ");
-                break;
-            case 90:
-                printf("NOVENTA ");
-                break;
-            default:
+        }
+               
+        aux = (abs(entrada)%100);//Imprecion de decenas y unidades
+        switch (aux)
+        {
+        case 10:
+            printf("DIEZ ");
+            break;
+        case 11:
+            printf("ONCE ");
+            break;
+        case 12:
+            printf("DOCE ");
+            break;
+        case 13:
+            printf("TRECE ");
+            break;
+        case 14:
+            printf("CATORCE ");
+            break;
+        case 15:
+            printf("QUINCE ");
+            break;
+        case 16:
+            printf("DIECISEIS ");
+            break;
+        case 17:
+            printf("DIECISIETE ");
+            break;
+        case 18:
+            printf("DIECIOCHO ");
+            break;
+        case 19:
+            printf("DIECINUEVE ");
+            break;
+        case 20:
+            printf("VEINTE ");
+            break;
+        case 30:
+            printf("TREINTA ");
+            break;
+        case 40:
+            printf("CUARENTA ");
+            break;
+        case 50:
+            printf("CINCUENTA ");
+            break;
+        case 60:
+            printf("SESENTA ");
+            break;
+        case 70:
+            printf("SETENTA ");
+            break;
+        case 80:
+            printf("OCHENTA ");
+            break;
+        case 90:
+            printf("NOVENTA ");
+            break;
+        default:
                 switch (aux/10)
                 {
                 case 2:
@@ -462,10 +331,7 @@ int main()
                 switch (aux%10)
                 {
                     case 1:
-                        if (flag == 0)
-                        {
-                            printf("UNO ");
-                        }
+                        printf("UNO ");
                         break;
                     case 2:
                         printf("DOS ");
@@ -493,10 +359,7 @@ int main()
                         break;
                     }
                 break;//Switch grande
-            }
         }
-        
-        
         printf("\n\n-Presione cualquier tecla para volver a ejecutar");
         printf("\n-Presione ESCAPE para finalizar\n");
     } while (getch() != 27);
