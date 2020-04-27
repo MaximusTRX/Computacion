@@ -9,16 +9,18 @@ int main()
 {
     do
     {
-        int entrada, div, aux;
+        int entrada, div, aux, flag;
         printf("\nIngrese el numero: \n");
         scanf("%i", &entrada);
 
         if (abs(entrada) >= 10000)
         {
             div = 1000;
+            flag = 0;
         }else if (abs(entrada) >= 1000)
         {
-            div = 100;
+            div = 1000;
+            flag = 1;
         }else if (abs(entrada) >= 100)
         {
             div = 100;
@@ -38,7 +40,11 @@ int main()
         do
         {
             aux = (abs(entrada)/div);
-            
+            if (aux == 0)
+            {
+                flag = 5;
+            }
+            printf("\naux= %i\n", aux);
             switch (aux)
             {
             case 10:
@@ -126,7 +132,14 @@ int main()
                 switch (aux%10)
                 {
                     case 1:
-                    printf("UNO ");
+                        if (flag == 0)
+                        {
+                            printf("UNO ");
+                        }else if (div == 100)
+                        {
+                            printf("CIEN ");
+                            flag = 5;
+                        }
                         break;
                     case 2:
                         printf("DOS ");
@@ -138,7 +151,14 @@ int main()
                         printf("CUATRO ");
                         break;
                     case 5:
-                        printf("CINCO ");
+                        if (flag == 0)
+                        {
+                            printf("CINCO ");
+                        }else if (div == 100)
+                        {
+                            printf("QUINIENTOS ");
+                            flag = 5;
+                        }
                         break;
                     case 6:
                         printf("SEIS ");
@@ -158,7 +178,13 @@ int main()
             if (div == 1000)
             {
                 printf("MIL ");
+            }else if ((div == 100) && (flag != 5))
+            {
+                printf("CIENTOS ");
             }
+            
+            
+            flag++;
             
             entrada %= div;
             div /= 10;
