@@ -2,6 +2,8 @@
 #include<conio.h>
 #include<math.h>
 
+void drawcircle();
+
 int main()
 {
     do
@@ -10,35 +12,28 @@ int main()
         textmode(C4350);
         _setcursortype(_NOCURSOR);
 
-        int x, y, res;
+        drawcircle();
 
-        for (x = 0; x < 80 ; x++)
+        gotoxy(52, 1);
+        /*cprintf("\n\n-Presione cualquier tecla para volver a ejecutar");
+        gotoxy(53, 1);
+        cprintf("\n-Presione ESCAPE para finalizar\n");*/
+    } while (getch() != 27);
+    return 0;
+}
+
+void drawcircle(){
+        for (char x = 0; x < 80 ; x++)
         {
-            for (y = 0; y < 50; y++)
+            for (char y = 0; y < 50; y++)
             {
-                res = floor(pow((x-40),2) + pow((y-25), 2));
-
-                cprintf("%.1i",res);
-                if (res == (24*24))
+                if (floor(0.5+ sqrt((x-40)*(x-40) + (y-25)*(y-25))) == 24)
                 {
                     textbackground(15);
                     textcolor(0);
                     gotoxy(x+1, y+1);
                     cprintf(" ");
-                }else
-                {
-                    textbackground(0);
-                    textcolor(15);
-                    gotoxy(x+1, y+1);
-                    cprintf(" ");
                 }
             }
         }
-        
-
-
-        printf("\n\n-Presione cualquier tecla para volver a ejecutar");
-        printf("\n-Presione ESCAPE para finalizar\n");
-    } while (getch() != 27);
-    return 0;
 }
