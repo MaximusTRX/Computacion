@@ -50,7 +50,7 @@ int main()
          if(delay(0, 200)){
             gotoxy(1,1);
             gettime(&hora);
-            printf("%0.2d:%0.2d:%0.2d.%0.3d", hora.ti_hour, hora.ti_min, hora.ti_sec, hora.ti_hund);
+            printf("%0.2i:%0.2i:%0.2i.%0.3i", hora.ti_hour, hora.ti_min, hora.ti_sec, hora.ti_hund);
         }    
     }
 	return 0;	
