@@ -33,17 +33,6 @@ int main()
             ang = (hora.ti_sec * 6 + ((6/5) * (hora.ti_hund / 20)));
             sec_ang = ang;
             draw_line(22, ang, 1);
-
-            clear_line(16, min_ang);
-            ang = (hora.ti_min * 6 + (2 * (hora.ti_sec / 20)));
-            min_ang = ang;
-            draw_line(16, ang, 3);
-
-
-            clear_line(10, hora_ang);
-            ang = (hora.ti_hour * 30 + (10 * (hora.ti_min / 20)));
-            hora_ang = ang;
-            draw_line(10, ang, 6);
         }
     }
     return 0;
@@ -162,6 +151,8 @@ int delay(int opt, int ms){
         {
             lastTime = currentTime;
             return 1;
+                break;
+            }
         }
     }
     return 0;
