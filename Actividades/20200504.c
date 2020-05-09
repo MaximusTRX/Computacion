@@ -16,7 +16,7 @@ int main()
     //cprintf("%0.2d:%0.2d:%0.2d.%0.3d", hora.ti_hour, hora.ti_min, hora.ti_sec, hora.ti_hund);
     textmode(C4350);
     _setcursortype(_NOCURSOR);
-        
+    
     struct time hora;
     float ang;
     float sec_ang, min_ang, hora_ang; //Guardo valor previo del angulo para borrarlo
@@ -30,19 +30,28 @@ int main()
         {
             gettime(&hora);
             //cprintf("%0.2d:%0.2d:%0.2d.%0.3d", hora.ti_hour, hora.ti_min, hora.ti_sec, hora.ti_hund);
-            clear_line(22, sec_ang);
             ang = (hora.ti_sec * 6 + ((6/5) * (hora.ti_hund / 20)));
+            if (ang != sec_ang)
+            {
+                clear_line(22, sec_ang);
+            }
             sec_ang = ang;
             draw_line(22, ang, 1);
 
-            clear_line(16, min_ang);
             ang = (hora.ti_min * 6 + (2 * (hora.ti_sec / 20)));
+            if(ang != min_ang)
+            {
+                clear_line(16, min_ang);
+            }
             min_ang = ang;
             draw_line(16, ang, 3);
 
 
-            clear_line(10, hora_ang);
             ang = (hora.ti_hour * 30 + (10 * (hora.ti_min / 20)));
+            if(ang != hora_ang)
+            {
+                clear_line(10, hora_ang);
+            }
             hora_ang = ang;
             draw_line(10, ang, 6);
         }
