@@ -2,7 +2,7 @@
 #include<conio.h>
 #include<math.h>
 #include<time.h>
-#include<dos.h> 
+#include<dos.h>
 
 //Caracteres de Operacion
 const unsigned char ASII048[] = {0x0E, 0x11, 0x11, 0x11, 0x11, 0x11, 0x0E, 0x00};	// Char 000 ('0')
@@ -51,7 +51,9 @@ void CALCULADORA();
     ASII 0 80 DOWN-ARROW
     ASII 0 75 LEFT-ARROW
     ASII 0 77 RIGHT-ARROW'
-    ASII 0 39 COMILLA
+    ASII   39 COMILLA
+
+    ASII   110 "n"
 */
 
 int main()
@@ -59,7 +61,7 @@ int main()
     //cprintf("%0.2d:%0.2d:%0.2d.%0.3d", hora.ti_hour, hora.ti_min, hora.ti_sec, hora.ti_hund);
     textmode(C4350);
     _setcursortype(_NOCURSOR);
-    
+
     while (1)
     {
         RELOJ();
@@ -87,7 +89,7 @@ void draw_circle(){
 }
 
 void draw_line(int rad, float ang, char color){//Algoritmo de Bresenham
-    
+
     ang = G2RAD(ang);
 
     int x,i,x1,y1;
@@ -95,11 +97,11 @@ void draw_line(int rad, float ang, char color){//Algoritmo de Bresenham
     int y0 = 25;
     x1=floor(0.5+(x0+(rad*(cos(ang)))));
     y1=floor(0.5+(y0+(rad*(sin(ang)))));
-    int dx =  abs (x1 - x0); 
+    int dx =  abs (x1 - x0);
     int sx = x0 < x1 ? 1 : -1;
     int dy = -abs (y1 - y0);
-    int sy = y0 < y1 ? 1 : -1; 
-    int err = dx + dy; 
+    int sy = y0 < y1 ? 1 : -1;
+    int err = dx + dy;
     int e2; /* error value e_xy */
 
     while (1)
@@ -124,13 +126,13 @@ void draw_line(int rad, float ang, char color){//Algoritmo de Bresenham
         { /* e_xy+e_y < 0 */
             err += dx;
             y0 += sy;
-        } 
+        }
     }
     textbackground(color);
 }
 
 void clear_line(int rad, float ang){
-    
+
     ang = G2RAD(ang);
 
     int x,i,x1,y1;
@@ -138,11 +140,11 @@ void clear_line(int rad, float ang){
     int y0 = 25;
     x1=floor(0.5+(x0+(rad*(cos(ang)))));
     y1=floor(0.5+(y0+(rad*(sin(ang)))));
-    int dx =  abs (x1 - x0); 
+    int dx =  abs (x1 - x0);
     int sx = x0 < x1 ? 1 : -1;
     int dy = -abs (y1 - y0);
-    int sy = y0 < y1 ? 1 : -1; 
-    int err = dx + dy; 
+    int sy = y0 < y1 ? 1 : -1;
+    int err = dx + dy;
     int e2; /* error value e_xy */
 
     while (1)
@@ -167,14 +169,14 @@ void clear_line(int rad, float ang){
         { /* e_xy+e_y < 0 */
             err += dx;
             y0 += sy;
-        } 
+        }
     }
 }
 
 int delay(int opt, int ms){
     static clock_t lastTime = 0;
     clock_t currentTime;
-    
+
     if(opt == 1)
         lastTime = clock();
     else{
@@ -194,9 +196,9 @@ void RELOJ(){
     float sec_ang, min_ang, hora_ang; //Guardo valor previo del angulo para borrarlo
     unsigned char key;
     delay(1, 200);
-    
+
     draw_circle();
-    
+
     while (1)
     {
         if (kbhit())
@@ -208,7 +210,7 @@ void RELOJ(){
                 return;
             }
         }
-        
+
         if(delay(0, 200))//Graficado RELOJ
         {
             gettime(&hora);
@@ -242,30 +244,59 @@ void RELOJ(){
 }
 
 void CALCULADORA(){
-    unsigned char key, x = 1, y = 1;
-    int ms = 200;
-    clock_t lastTime = 0;
-    clock_t currentTime;
-
+    static char Entrada[1024];
+    static char Stack[10][1024];
+    static int posIn = 0;
+    static int posSt = 0;
+    unsigned char key, x = 1, y = 44;
+    int i = 0;
+    delay(1, (10*1000));
     while (1)
-    {
-        key = getch();
-        if (((key > 38) && (key < 46)) || ((key > 46) && (key < 58)) || (key == 101))//Compruebo que la tecla sea una imprimible
+    {  
+        if(kbhit())//Input line
         {
-            lastTime = clock();
-            print_char(x, y, key);
-            x+= 6;
-        }else if (key == 27)
-        {
-            clrscr();
-            return;
+            key = getch();
+
+            if (((key > 38) && (key < 46)) || ((key > 46) && (key < 58)) || (key == 101))//Compruebo que la tecla sea una imprimible
+            {
+                delay(1, (10*1000));//Restart last time key hit
+                
+                clrscr();
+
+                Entrada[posIn] = key;
+                
+                if (posIn >= 10)
+                {
+                    i = posIn - 9;
+                }else
+                {
+                    i = 0;
+                }
+                x = 1;
+                for (i ; i < posIn+1; i++)
+                {
+                    print_char(x, y, Entrada[i]);
+                    x+= 8;
+                }
+                posIn++;
+
+            }else if (key == 27)
+            {
+                clrscr();
+                return;
+            }else if (key == 13)
+            {
+                
+            }
+            
+
         }
-        
-        currentTime = clock();
-        if((currentTime-lastTime)>=ms)
+
+
+
+
+        if (delay(2, (10*1000)))//Compruebo tiempo transcurrido
         {
-            printf("LastTime %ld", lastTime);
-            lastTime = currentTime;
             clrscr();
             return;
         }
@@ -284,7 +315,7 @@ void print_char(unsigned char posX, unsigned char posY, unsigned char key){
         case '(':
             key = 10;
             break;
-        
+
         case ')':
             key = 11;
             break;
@@ -318,11 +349,12 @@ void print_char(unsigned char posX, unsigned char posY, unsigned char key){
             break;
         }
     }
+
     for (unsigned char pixelX = 0; pixelX < 7; pixelX++)
     {
         for (unsigned char pixelY = 0; pixelY < 6; pixelY++)
         {
-            gotoxy(posX+pixelY, posY+pixelX);
+            gotoxy(posX+pixelY+1, posY+pixelX);
             if ((ROMCHAR[key][pixelX] << pixelY) & 0x10)
             {
                 textbackground(15);
