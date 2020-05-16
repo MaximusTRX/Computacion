@@ -3,6 +3,7 @@
 #include<math.h>
 #include<time.h>
 #include<dos.h>
+#include<string.h>
 
 //Caracteres de Operacion
 const unsigned char ASII048[] = {0x0E, 0x11, 0x11, 0x11, 0x11, 0x11, 0x0E, 0x00};	// Char 000 ('0')
@@ -259,6 +260,7 @@ void CALCULADORA(){
 
             if (((key > 38) && (key < 46)) || ((key > 46) && (key < 58)) || (key == 101))//Compruebo que la tecla sea una imprimible
             {
+
                 delay(1, (10*1000));//Restart last time key hit
                 
                 clrscr();
@@ -282,18 +284,17 @@ void CALCULADORA(){
 
             }else if (key == 27)
             {
+                posIn = 0;
                 clrscr();
                 return;
             }else if (key == 13)
             {
-                
+                posIn = 0;
+                strncpy(Stack[posSt], Entrada, posIn);
+                print_char(x, 34, Stack[posSt]);                
+                posSt++;
             }
-            
-
         }
-
-
-
 
         if (delay(2, (10*1000)))//Compruebo tiempo transcurrido
         {
