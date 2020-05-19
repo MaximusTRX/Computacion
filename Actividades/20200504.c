@@ -1,4 +1,5 @@
 #include<stdio.h>
+#include <stdlib.h>
 #include<conio.h>
 #include<math.h>
 #include<time.h>
@@ -246,38 +247,40 @@ void RELOJ(){
 
 void CALCULADORA(){
     static char Entrada[1024];
-    static char Stack[10][1024];
-    static int posIn = 0;
-    static int posSt = 0;
-    unsigned char key, x = 1, y = 44;
-    int i = 0;
+    static float Stack[10];
+    int posIn = 0;
+    int posSt = 0;
+    unsigned char key, x = 1;
+    int cont = 0;
+    char *ptr;
+
     delay(1, (10*1000));
     while (1)
-    {  
+    {
         if(kbhit())//Input line
         {
             key = getch();
 
-            if (((key > 38) && (key < 46)) || ((key > 46) && (key < 58)) || (key == 101))//Compruebo que la tecla sea una imprimible
+            if (((key > 38) && (key < 44)) || ((key > 44) && (key < 58)) || (key == 101))//Compruebo que la tecla sea una imprimible
             {
 
                 delay(1, (10*1000));//Restart last time key hit
-                
+
                 clrscr();
 
                 Entrada[posIn] = key;
-                
+
                 if (posIn >= 10)
                 {
-                    i = posIn - 9;
+                    cont = posIn - 9;
                 }else
                 {
-                    i = 0;
+                    cont = 0;
                 }
                 x = 1;
-                for (i ; i < posIn+1; i++)
+                for (cont ; cont < posIn+1; cont++)
                 {
-                    print_char(x, y, Entrada[i]);
+                    print_char(x, 43, Entrada[cont]);
                     x+= 8;
                 }
                 posIn++;
@@ -289,12 +292,107 @@ void CALCULADORA(){
                 return;
             }else if (key == 13)
             {
-                posIn = 0;
-                strncpy(Stack[posSt], Entrada, posIn);
-                print_char(x, 34, Stack[posSt]);                
+                if (Entrada[0] != 39)
+                {
+
+                    Stack[posSt] = strtod(Entrada, &ptr);
+                    
+                }
+
+                if (posSt > 2)
+                {
+                    float aux;
+                    switch (Entrada[0])
+                    {
+                    case '+':
+                        aux = Stack[posSt-1] + Stack[posSt];
+
+                        if ((posSt+1) == 11)
+                        {
+                            posSt = 0;
+                        }else
+                        {
+                            posSt+=1;
+                        }
+                        Stack[posSt] = aux;
+                        break;
+                    
+                    case '-':
+                        aux = Stack[posSt-1] - Stack[posSt];
+
+                        if ((posSt+1) == 11)
+                        {
+                            posSt = 0;
+                        }else
+                        {
+                            posSt+=1;
+                        }
+                        Stack[posSt] = aux;
+                        break;
+
+                    case '*':
+                        aux = Stack[posSt-1] * Stack[posSt];
+
+                        if ((posSt+1) == 11)
+                        {
+                            posSt = 0;
+                        }else
+                        {
+                            posSt+=1;
+                        }
+                        Stack[posSt] = aux;
+                        break;
+                    
+                    case '/':
+                        if (Stack[posSt] == 0)
+                        {
+                            break;
+                        }
+
+                        aux = Stack[posSt-1] / Stack[posSt];
+
+                        if ((posSt+1) == 11)
+                        {
+                            posSt = 0;
+                        }else
+                        {
+                            posSt+=1;
+                        }
+                        Stack[posSt] = aux;
+                        break;
+                    }
+                }
                 posSt++;
+                posIn = 0;
+                clrscr();
             }
         }
+
+        //Re escribo en el stack
+        if (posSt == 11)
+        {
+            posSt = 0;
+        }
+        
+
+        char out[1024];
+        char posStX, posStY = 34;
+        
+        // if (posSt != 0)
+        // {
+            for (char j = (posSt-1); j >= 0; j--)
+            {
+                posStX = 72;
+                posStY-=8;
+                sprintf(out, "%10g", Stack[j]);
+
+                for (char i = 10; i > 0; i--)
+                {
+                    print_char(posStX, posStY, out[i]);
+                    posStX-=8;
+                }
+            }
+        //}
 
         if (delay(2, (10*1000)))//Compruebo tiempo transcurrido
         {
@@ -337,7 +435,7 @@ void print_char(unsigned char posX, unsigned char posY, unsigned char key){
             key = 15;
             break;
 
-        case ',':
+        case '.':
             key = 16;
             break;
 
