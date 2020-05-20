@@ -292,7 +292,7 @@ void CALCULADORA(){
                 return;
             }else if (key == 13)
             {
-                int k;
+                int k=0;
                 if (Entrada[0] != 39)
                 {
                     for (int i = 0; i < posIn; i++)// Compruevo caracteres y los separo
