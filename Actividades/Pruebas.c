@@ -55,23 +55,7 @@ int main()
             {
                 char k = 0;
 
-                for (int i = 0; i < posIn; i++)// Compruevo caracteres y los separo
-                {
-                    if ((Entrada[i] > 47) && (Entrada[i] < 58) || (Entrada[i] == 46))
-                    {
-                        k++;
-                    }else
-                    {
-                        break;
-                    }
-                }
-
-                float convert[k];
                 
-                for (int i = 0; i < k; i++)
-                {
-                    convert[i] = Entrada[i];
-                }
 
                 gotoxy(1, 20);
                 textcolor(15);

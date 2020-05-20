@@ -292,14 +292,29 @@ void CALCULADORA(){
                 return;
             }else if (key == 13)
             {
+                int k;
                 if (Entrada[0] != 39)
                 {
-
-                    Stack[posSt] = strtod(Entrada, &ptr);
+                    for (int i = 0; i < posIn; i++)// Compruevo caracteres y los separo
+                    {
+                        if ((Entrada[i] > 47) && (Entrada[i] < 58) || (Entrada[i] == 46))
+                        {
+                            k++;
+                        }else
+                        {
+                            break;
+                        }
+                    }
+                    float convert[k];
                     
-                }
-
-                if (posSt > 2)
+                    for (int i = 0; i < k; i++)
+                    {
+                        convert[i] = Entrada[i];
+                    }
+                    
+                    Stack[posSt] = strtod(convert, &ptr);
+                    
+                }else if (posSt > 2)
                 {
                     float aux;
                     switch (Entrada[0])
