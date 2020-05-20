@@ -1,122 +1,219 @@
-#include<stdio.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdio.h>
 #include <string.h>
-#include"conio.h"
+#include <conio.h>
+#include <ctype.h>
+#include <fcntl.h>
+#include <sys\stat.h>
+#include <io.h>
+#include <errno.h>
+
+typedef struct{
+    int id;         
+    char nombre[80];
+    char tel[20];  
+}_sAgenda;
+
 
 int main()
 {
-       random
-    typedef struct 
-    {
-        unsigned char id;
-        char nombre[50];
-        char telefono[16];
-    }agenda;
+    _sAgenda Agenda1;
+    int nItems, iView, sizeChar, i;
+    short opt;
+    char c;
+
+    nItems = 0;
+    iView = 0;
     
+    int fhandle, length;
+    int value;
+    char buffer[128];
 
-    do
+    if((fhandle = open("D:\\File1.dat", O_RDWR | O_BINARY)) == -1)
     {
-
-        agenda lista[10], aux[10];
-        char entrada, id = 0, edit = 0, mov = 0, delete;
-        do
+        if(errno == ENOENT)
         {
-            printf("\n\n[F1] Agregar\n");
-            printf("[F2] Eliminar\n");
-            printf("[F3] Editar\n");
-            printf("[IZQ][DER]\n");
-            
-            fflush(stdin);
-            entrada = getch();
-
-            if (entrada == 0)
+            printf("%s", strerror(errno));
+            if((fhandle = open("D:\\File1.dat", O_CREAT | O_BINARY | O_RDWR, S_IREAD | S_IWRITE)) == -1)
             {
-                entrada = getch();
-                switch (entrada)
-                {
-                case 59://F1
-                    if (id < 11)
-                    {
-                        printf("ID: %2d\n", id+1);
-                        lista[id].id = id;
-                        printf("Ingrese Nombre: ");
-                        fflush(stdin);
-                        gets(lista[id].nombre);
-                        fflush(stdin);
-                        printf("\nIngrese Telefono: ");
-                        gets(lista[id].telefono);
-                        id++;
-                    }else
-                    {
-                        printf("\nTodos los registros estan cargados\n");
-                    }
-                    
-                    break;
-                
-                case 60://F2
-                    do
-                    {
-                        printf("Seleccione ID a eliminar: ");
-                        scanf("%u%*c", &delete);
-                    } while (delete > 10);
-                    
-                    unsigned char j=0;
-                    for (unsigned char i = 0; i < 10; i++){
-                        if (i != (delete-1))
-                        {
-                            aux[j].id = j;
-                            strcpy(aux[j].nombre,lista[i].nombre);
-                            strcpy(aux[j].telefono,lista[i].telefono);
-                            j++;
-                        }
-                    }
-
-                    for (unsigned char l = 0; l < 10; l++)
-                    {
-                        lista[l].id = l;
-                        strcpy(lista[l].nombre,aux[l].nombre);
-                        strcpy(lista[l].telefono,aux[l].telefono);
-                    }
-                    break;
-                
-                case 61://F3
-                    do
-                    {
-                        printf("Seleccione ID a modificar: ");
-                        scanf("%u%*c", &edit);
-                    } while (edit > 10);
-
-                    printf("ID: %2u\n", edit);
-                    printf("Ingrese Nombre: ");
-                    fflush(stdin);
-                    gets(lista[edit-1].nombre);
-                    printf("\nIngrese Telefono: ");
-                    fflush(stdin);
-                    gets(lista[edit-1].telefono);
-                    break;
-                
-                case 77://DER
-                    if (mov >= id)
-                    {
-                        mov = 0;
-                    }
-                    printf("ID: %u | Nombre: %s | Telefono %16s \n", lista[mov].id, lista[mov].nombre, lista[mov].telefono);
-                    mov++;
-                    break;
-
-                case 75://IZQ
-                    if (mov == -1)
-                    {
-                        mov = id;
-                    }
-                    
-                    printf("ID: %u | Nombre: %s | Telefono %16s \n", lista[mov].id, lista[mov].nombre, lista[mov].telefono);
-                    mov--;
-                    break;
-                }
+                printf("%s", strerror(errno));
+                return -1;
             }
-        } while (entrada != 27);
-        printf("\n\n-Presione cualquier tecla para volver a ejecutar");
-        printf("\n-Presione ESCAPE para finalizar\n");
-    } while (getch() != 27);
-    return 0;
+            printf("FILE CREATED\n");
+        }
+    }
+    else
+    {
+        printf("FILE OPENED\n");
+    }
+
+    system("PAUSE");
+
+    nItems = lseek(fhandle, 0, SEEK_END) / sizeof(Agenda1);
+
+
+    while(1){
+        _setcursortype(_NOCURSOR);
+        clrscr();
+        gotoxy(1, 1);    
+        printf("***************************\n");
+        printf("* [F1]: NUEVO             *\n");
+        printf("* [F2]: EDITAR            *\n");
+        printf("* [F3]: ELIMINAR          *\n");
+        printf("* [IZQ] y [DER]: DESPLAZA *\n");
+        printf("* [ESC]: SALE             *\n");
+        printf("***************************");
+        
+        gotoxy(1, 10);
+        if(nItems == 0)
+            printf("***\t\tNO HAY ITEMS\t\t***");
+        if(nItems == 10)
+            printf("***\t\tAGENDA COMPLETA\t\t***");
+        if(nItems){
+            gotoxy(1, 12);
+            
+            lseek(fhandle, iView * sizeof(Agenda1), SEEK_END);
+            read(fhandle, &Agenda1, sizeof(Agenda1));
+
+            printf("ITME Nro: %d de %d\n\n", iView+1, nItems);
+            printf("ID:\t\t%d\n", Agenda1.id);
+            printf("NOMBRE:\t\t%s\n", Agenda1.nombre);
+            printf("TEL:\t\t%s\n", Agenda1.tel);
+        }
+
+        opt = getch();
+        if(opt == 0)
+            opt = 1000 + getch();
+        if(opt == 27)
+            break;
+            
+        switch(opt){
+            case 1059://AGREGAR
+                if(nItems == 10)
+                    break;    
+                for(i=12; i<17; i++){
+                    gotoxy(1, i);
+                    clreol();
+                }
+                gotoxy(1, 12);
+                clreol();
+                _setcursortype(_NORMALCURSOR);
+                printf("*** NUEVO ITEM ***\n\n");
+                printf("Ingrese Nombre: ");
+                sizeChar = sizeof(Agenda1.nombre)-1;
+                i = 0;
+                while((c=getchar())){
+                    if(sizeChar){
+                        Agenda1.nombre[i++] = c;
+                        sizeChar--;
+                    }
+                    if(c == 10)
+                        break;
+                }
+                Agenda1.nombre[i-1] = '\0';     
+                printf("\nIngrese Tel: ");
+                sizeChar = sizeof(Agenda1.tel)-1;
+                i = 0;
+                while((c=getchar())){
+                    if(sizeChar){
+                        Agenda1.tel[i++] = c;
+                        sizeChar--;
+                    }
+                    if(c == 10)
+                        break;
+                }
+                Agenda1.tel[i-1] = '\0';
+                Agenda1.id = nItems;
+                nItems++;
+                iView = nItems-1;
+            break;
+            case 1060://EDITAR
+                _setcursortype(_NORMALCURSOR);
+                if(nItems == 0)
+                    break;    
+                for(i=12; i<17; i++){
+                    gotoxy(1, i);
+                    clreol();
+                }
+                gotoxy(1, 12);
+                printf("*** EDITAR ITEM  Nro: %d ***\n\n", iView+1);
+                printf("Ingrese Nombre: %s", Agenda1.nombre);
+                sizeChar = sizeof(Agenda1.nombre)-1;
+                i = strlen(Agenda1.nombre);
+                while((c=getch()) != 13){
+                    if(c == 0)
+                        c = getch();
+                    else{
+                        if(iscntrl(c)){
+                            if(c==8 && i>0){
+                                i--;    
+                                Agenda1.nombre[i] = '\0';
+                            }
+                        }
+                        else{
+                            if(i < sizeChar){
+                                Agenda1.nombre[i++] = c;
+                                Agenda1.nombre[i] = '\0';
+                            }
+                        }
+                        gotoxy(1,14);
+                        clreol();    
+                        printf("Ingrese Nombre: %s", Agenda1.nombre);
+                    }
+                }
+                gotoxy(1, 16);
+                printf("Ingrese Tel: %s", Agenda1.tel);
+                sizeChar = sizeof(Agenda1.tel)-1;
+                i = strlen(Agenda1.tel);
+                while((c=getch()) != 13){
+                    if(c == 0)
+                        c = getch();
+                    else{
+                        if(iscntrl(c)){
+                            if(c==8 && i>0){
+                                i--;    
+                                Agenda1.tel[i] = '\0';
+                            }
+                        }
+                        else{
+                            if(i < sizeChar){
+                                Agenda1.tel[i++] = c;
+                                Agenda1.tel[i] = '\0';
+                            }
+                        }    
+                        gotoxy(1, 16);
+                        clreol();    
+                        printf("Ingrese Tel: %s", Agenda1.tel);
+                    }
+                }
+            break;
+            case 1061://ELIMINAR
+                if(nItems == 0)
+                    break;    
+                if(nItems > 0){
+                    for(i=iView; i<nItems-1; i++){
+                        Agenda1.id = Agenda1.id;
+                        strcpy(Agenda1.nombre, Agenda1.nombre);  
+                        strcpy(Agenda1.tel, Agenda1.tel);  
+                    }
+                    nItems--;
+                    if(iView == nItems)
+                        iView = nItems - 1;
+                }
+            break;
+            case 1077://DERECHA
+                iView++;
+                if(iView == nItems)
+                    iView = 0;
+            break;
+            case 1075://IZQUIERDA
+                iView--;
+                if(iView < 0)
+                    iView = nItems-1;
+            break;
+        }     
+    }
+    close(fhandle);
+	return 0;	
 }
