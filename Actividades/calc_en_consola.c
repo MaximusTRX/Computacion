@@ -23,7 +23,7 @@ void CALCULADORA(){
     static float Stack[10];
     int posIn = 0;
     int posSt = 0;
-    unsigned char key, x = 1;
+    unsigned char key, x = 1, changeSt = 0;
     int cont = 0;
     char *ptr;
 
@@ -58,7 +58,6 @@ void CALCULADORA(){
                     x+= 8;
                 }
                 posIn++;
-
             }else if (key == 27)
             {
                 posIn = 0;
@@ -66,28 +65,39 @@ void CALCULADORA(){
                 return;
             }else if (key == 13)
             {
+                changeSt = 1;
+                // gotoxy(1, 30);
+                // cprintf("Entrada| %s", Entrada);
                 int k=0;
                 if (Entrada[0] != 39)
                 {
                     for (int i = 0; i < posIn; i++)// Compruevo caracteres y los separo
                     {
-                        if ((Entrada[i] > 47) && (Entrada[i] < 58) || (Entrada[i] == 46))
+                        if ((Entrada[i] >= '0') && (Entrada[i] <= '9') || (Entrada[i] == '.'))
                         {
                             k++;
-                        }else
-                        {
-                            break;
                         }
                     }
-                    float convert[k];
+                    char convert[1024] = {0};
                     
                     for (int i = 0; i < k; i++)
                     {
                         convert[i] = Entrada[i];
                     }
                     
+                    // gotoxy(1, 32);
+                    // cprintf("convert| %s", convert);
+                    
                     Stack[posSt] = strtod(convert, &ptr);
                     
+                    if (*ptr != NULL)
+                    {
+                        gotoxy(1, 33);
+                        cprintf("JUAN CARLITOS ERROR");
+                    }
+                    
+                    // gotoxy(1, 34);
+                    // cprintf("strtod | %f", Stack[posSt]);
                 }else if (posSt > 2)
                 {
                     float aux;
@@ -153,7 +163,7 @@ void CALCULADORA(){
                 }
                 posSt++;
                 posIn = 0;
-                clrscr();
+                //clrscr();
             }
         }
 
@@ -163,27 +173,43 @@ void CALCULADORA(){
             posSt = 0;
         }
         
+        if (changeSt)
+        {
+            char out[10];
+            char posStX, posStY, j;
 
-        char out[1024];
-        char posStX, posStY = 34;
-        
-        // if (posSt != 0)
-        // { 
-            for (char j = (posSt-1); j >= 0; j--)
+            posStX = 72;
+            posStY = 34;
+            
+            if ((posSt-1) > 4)
             {
-                posStX = 72;
-                posStY-=8;
+                j = (posSt-1) - (posSt-5);
+            }else
+            {
+                j = posSt-1;
+            }
+            
+            for (j; j > 0; j--)
+            {
                 sprintf(out, "%10g", Stack[j]);
-
                 for (char i = 10; i > 0; i--)
                 {
-                    gotoxy(posStY, posStY);
+                    gotoxy(posStX, posStY);
                     cprintf("%c", out[i]);
                     posStX-=8;
                 }
+                gotoxy(1,1);
+                cprintf("Valor posStY: %d", posStY);
+                getch();
+                posStY-=8;
             }
-        //}
-
+            for (char i = 0; i < 10; i++)
+            {
+                out[i] = 0;
+            }
+            
+            changeSt = 0;
+        }
         if (delay(2, (10*1000)))//Compruebo tiempo transcurrido
         {
             clrscr();

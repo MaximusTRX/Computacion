@@ -305,7 +305,7 @@ void CALCULADORA(){
                             break;
                         }
                     }
-                    float convert[k];
+                    char convert[k];
                     
                     for (int i = 0; i < k; i++)
                     {
