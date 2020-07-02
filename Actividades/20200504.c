@@ -250,7 +250,7 @@ void CALCULADORA(){
     static float Stack[10];
     int posIn = 0;
     int posSt = 0;
-    unsigned char key, x = 1;
+    unsigned char key, x = 1, changeSt = 0;
     int cont = 0;
     char *ptr;
 
@@ -292,6 +292,7 @@ void CALCULADORA(){
                 return;
             }else if (key == 13)
             {
+                changeSt = 1;
                 int k=0;
                 if (Entrada[0] != 39)
                 {
@@ -390,11 +391,47 @@ void CALCULADORA(){
         }
         
 
+        if (changeSt)
+        {
+            char out[10] = {0};
+            char posStX, posStY, j;
+
+            posStX = 72;
+            posStY = 34;
+            
+            if ((posSt-1) > 4)
+            {
+                j = (posSt-1) - (posSt-5);
+            }else
+            {
+                j = 0;
+            }
+
+            for (char k; k > j; k--)
+            {
+                sprintf(out,"%10g", Stack[k]);
+                for (char i = 0; i < 10; i++)
+                {
+                    gotoxy(posStX, posStY);
+                    print_char(posStX, posStY, out[i]);
+                    posStX-=8;
+                }
+                posStY-=8;
+            }
+            for (char i = 10; i > 0; i--)
+            {
+                out[i] = 0;
+            }
+            
+            changeSt = 0;
+        }
+
+        /*
         char out[1024];
         char posStX, posStY = 34;
         
-        // if (posSt != 0)
-        // {
+        if (posSt != 0)
+        {
             for (char j = (posSt-1); j >= 0; j--)
             {
                 posStX = 72;
@@ -407,7 +444,7 @@ void CALCULADORA(){
                     posStX-=8;
                 }
             }
-        //}
+        }*/
 
         if (delay(2, (10*1000)))//Compruebo tiempo transcurrido
         {

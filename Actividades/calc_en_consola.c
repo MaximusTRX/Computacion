@@ -175,7 +175,7 @@ void CALCULADORA(){
         
         if (changeSt)
         {
-            char out[10];
+            char out[10] = {0};
             char posStX, posStY, j;
 
             posStX = 72;
@@ -186,35 +186,41 @@ void CALCULADORA(){
                 j = (posSt-1) - (posSt-5);
             }else
             {
-                j = posSt-1;
+                j = 0;
             }
-            
-            for (j; j > 0; j--)
+
+            for (char k; k > j; k--)
             {
-                sprintf(out, "%10g", Stack[j]);
-                for (char i = 10; i > 0; i--)
+                sprintf(out,"%10g", Stack[k]);
+                gotoxy(1,2);
+                cprintf("Valor: %s", out);
+                for (char i = 0; i < 10; i++)
                 {
+                    // gotoxy(1,1);
+                    // cprintf("Valor i: %d", i);
+                    // getch();
                     gotoxy(posStX, posStY);
                     cprintf("%c", out[i]);
                     posStX-=8;
                 }
-                gotoxy(1,1);
-                cprintf("Valor posStY: %d", posStY);
-                getch();
                 posStY-=8;
             }
-            for (char i = 0; i < 10; i++)
+            for (char i = 10; i > 0; i--)
             {
                 out[i] = 0;
             }
             
             changeSt = 0;
+            // gotoxy(1,1);
+            // cprintf("SALIENDO");
+            // getch();
         }
-        if (delay(2, (10*1000)))//Compruebo tiempo transcurrido
-        {
-            clrscr();
-            return;
-        }
+
+        // if (delay(2, (10*1000)))//Compruebo tiempo transcurrido
+        // {
+        //     clrscr();
+        //     return;
+        // }
     }
 }
 

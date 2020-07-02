@@ -6,7 +6,7 @@ int main()
     do{
         char *ptr;
         float X[10];
-        char buf[1024]; 
+        char buf[10]; 
         char Entrada[1024];
         int posIn = 0;
         do
@@ -14,21 +14,7 @@ int main()
             Entrada[posIn] = getche();
             posIn++;
         } while (Entrada[posIn-1] != 13);
-        
-        posIn-= 1;
-        for (int i = 1; i < posIn; i++)
-        {
-            Entrada[i-1] = Entrada[i];
-        }
-        
-        posIn-=2;
-        for (int i = 0; i < posIn; i++)
-        {
-            printf("%c  ", Entrada[i]);
-        }
-        
 
-        /*
         X[0] = strtod(Entrada, &ptr);
         
         gotoxy(1, 10);
@@ -43,7 +29,7 @@ int main()
             {
                 printf("%c ", buf[i]);
             }
-        }*/
+        }
         
 
     }while(getch() != 27);
